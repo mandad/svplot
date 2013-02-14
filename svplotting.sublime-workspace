@@ -1,0 +1,665 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"hypa",
+				"hypack_port"
+			],
+			[
+				"h",
+				"hypack_port"
+			],
+			[
+				"get",
+				"get_data_loop"
+			],
+			[
+				"new",
+				"newcolors"
+			],
+			[
+				"num",
+				"num_pts"
+			],
+			[
+				"ser",
+				"server_addr"
+			],
+			[
+				"serve",
+				"server_address"
+			],
+			[
+				"se",
+				"setsockopt  (function)"
+			],
+			[
+				"print",
+				"print_rec  (function)"
+			],
+			[
+				"stop",
+				"stop_data"
+			],
+			[
+				"bind",
+				"bind_address"
+			],
+			[
+				"set",
+				"settimeout  (function)"
+			],
+			[
+				"DG",
+				"SOCK_DGRAM  (variable)"
+			],
+			[
+				"data",
+				"datacount"
+			],
+			[
+				"run",
+				"runsonar"
+			],
+			[
+				"plot",
+				"plot_sv"
+			],
+			[
+				"scaling",
+				"scaling_limits"
+			],
+			[
+				"sv",
+				"sv_values"
+			],
+			[
+				"limit",
+				"limit_method"
+			],
+			[
+				"rea",
+				"read_from_txt"
+			],
+			[
+				"show",
+				"show_hist"
+			],
+			[
+				"proc",
+				"process_single"
+			],
+			[
+				"colo",
+				"colorbar_plot"
+			],
+			[
+				"if",
+				"ifmain	if __name__ == '__main__'"
+			],
+			[
+				"pix",
+				"pixel_size_y"
+			],
+			[
+				"pixe",
+				"pixel_size_x"
+			],
+			[
+				"pixel",
+				"pixel_size_y"
+			],
+			[
+				"sv_M",
+				"sv_max"
+			],
+			[
+				"bin",
+				"bin_edges"
+			],
+			[
+				"ylim",
+				"ylim_data"
+			],
+			[
+				"xlm",
+				"xlim_data"
+			],
+			[
+				"yl",
+				"ylim_data"
+			],
+			[
+				"x",
+				"xlim_data"
+			],
+			[
+				"xlim",
+				"xlim_data"
+			],
+			[
+				"sv_st",
+				"sv_std_limit"
+			],
+			[
+				"SV",
+				"SVNormalize"
+			],
+			[
+				"co",
+				"colors"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "svplot.py",
+			"settings":
+			{
+				"buffer_size": 4856,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tiff_convert.py",
+			"settings":
+			{
+				"buffer_size": 1545,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "extractsv.py",
+			"settings":
+			{
+				"buffer_size": 2644,
+				"line_ending": "Unix",
+				"name": "import sys"
+			}
+		},
+		{
+			"file": "resoncom.py",
+			"settings":
+			{
+				"buffer_size": 2383,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "hypackcom.py",
+			"settings":
+			{
+				"buffer_size": 3318,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "realtime_sv.py",
+			"settings":
+			{
+				"buffer_size": 4640,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "datacollect.py",
+			"settings":
+			{
+				"buffer_size": 184,
+				"line_ending": "Unix",
+				"name": "import resoncom"
+			}
+		},
+		{
+			"file": "/Users/damian/Documents/Programming/Python/usehstp.py",
+			"settings":
+			{
+				"buffer_size": 204,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 267.0,
+		"selected_items":
+		[
+			[
+				":w",
+				":w - Save"
+			],
+			[
+				"code",
+				"SublimeCodeIntel: Reset"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"About"
+			],
+			[
+				"PCI",
+				"Package Control: Install Package"
+			],
+			[
+				"Pack",
+				"Package Control: Install Package"
+			],
+			[
+				":e",
+				":$ - EOF"
+			],
+			[
+				"Snippet: ",
+				"Snippet: New Class"
+			]
+		],
+		"width": 602.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/damian/Documents/Programming/Python/dmtest/wxplotdemo.py",
+		"/Users/damian/Documents/Programming/Python/svplot/hypackcom.py",
+		"/Users/damian/Documents/Programming/Python/dmtest/animatedscatter2.py",
+		"/Users/damian/Documents/Programming/Python/svplot/SVRanges_ex",
+		"/Volumes/DM_16GB/Survey/SV Visualize/Kidd_NKodiak/SharatinBay_All.txt",
+		"/Volumes/DM_16GB/Survey/SV Visualize/Kidd_NKodiak/2803_298_8125.txt",
+		"/Users/damian/Documents/Programming/Python/dmtest/animatedscatter.py",
+		"/Users/damian/Documents/Programming/Python/dmtest/wxplotdynamic.py",
+		"/Users/damian/Documents/Programming/Python/dmtest/wxplotdynamic",
+		"/Users/damian/Documents/Programming/Python/svplot/YaquinaRiver/2802_LF.txt",
+		"/Users/damian/Documents/Programming/Python/svplot/YaquinaRiver/DN011_2802.txt",
+		"/Users/damian/Documents/Programming/Python/svplot/YaquinaRiver/DN011_all.txt",
+		"/Users/damian/Documents/Programming/Python/minesweeper.py",
+		"/Users/damian/Library/Application Support/Sublime Text 2/Packages/SublimeCodeIntel/Base File.sublime-settings",
+		"/Users/damian/Library/Application Support/Sublime Text 2/Packages/User/Base File.sublime-settings",
+		"/Volumes/DM_16GB/Survey/AIS_Furuno_FA-150.txt",
+		"/Users/damian/Documents/Programming/Form1.cs",
+		"/Users/damian/.codeintel/config",
+		"/Users/damian/Documents/Programming/Python/dmtest/rasterfigure.py",
+		"/Users/damian/Documents/Programming/Python/figlegend_demo.py",
+		"/Users/damian/Library/Application Support/Sublime Text 2/Packages/User/Python.sublime-settings",
+		"/Users/damian/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/damian/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"plot_sv",
+			"dpi",
+			"self.data",
+			"subplot",
+			"FigureCanv",
+			"canvas",
+			"plot_data",
+			"hl",
+			"num.",
+			"pi",
+			"num.",
+			"num",
+			"print_rec",
+			"runsonar",
+			"self.reson",
+			"sv_limits",
+			"zeroMQ",
+			"filename",
+			"lim_data",
+			"pixel_size_x",
+			"100",
+			"lon_0"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "svplot.py",
+					"settings":
+					{
+						"buffer_size": 4856,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1959,
+								1959
+							]
+						],
+						"settings":
+						{
+							"rulers":
+							[
+								80
+							],
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": false,
+							"wrap_width": 80
+						},
+						"translation.x": 0.0,
+						"translation.y": 1260.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "tiff_convert.py",
+					"settings":
+					{
+						"buffer_size": 1545,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1219,
+								1219
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "extractsv.py",
+					"settings":
+					{
+						"buffer_size": 2644,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1406,
+								1406
+							]
+						],
+						"settings":
+						{
+							"auto_name": "import sys",
+							"rulers":
+							[
+								80
+							],
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 390.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "resoncom.py",
+					"settings":
+					{
+						"buffer_size": 2383,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1382,
+								1382
+							]
+						],
+						"settings":
+						{
+							"rulers":
+							[
+								80
+							],
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 259.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "hypackcom.py",
+					"settings":
+					{
+						"buffer_size": 3318,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2670,
+								2670
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "realtime_sv.py",
+					"settings":
+					{
+						"buffer_size": 4640,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4225,
+								4225
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1470.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "datacollect.py",
+					"settings":
+					{
+						"buffer_size": 184,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								47,
+								145
+							]
+						],
+						"settings":
+						{
+							"auto_name": "import resoncom",
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/Users/damian/Documents/Programming/Python/usehstp.py",
+					"settings":
+					{
+						"buffer_size": 204,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								143,
+								143
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
