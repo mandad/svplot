@@ -38,7 +38,11 @@ def calc_scaling_limits(values, method='hist', **kwargs):
         sv_min = np.min(values)
         sv_max = np.max(values)
     else:
-        sv_hist,bin_edges = np.histogram(values, bins=200)
+        if 'bins' in kwargs:
+            bins = kwargs['bins']
+        else:
+            bins = 200
+        sv_hist,bin_edges = np.histogram(values, bins=bins)
         sv_hist_masked = np.ma.masked_less(sv_hist, len(values) * 0.001)
         sv_limits = np.ma.flatnotmasked_edges(sv_hist_masked)
         sv_min = bin_edges[sv_limits[0]]

@@ -47,8 +47,6 @@ class HypackCom(object):
     def report_info(self, data, addr):
         if self.communicator is not None:
             self.communicator.new_data(['hypack', (addr, data)]) 
-        self.inc_stop(5)
-
 
 class NetworkClient(object):
     def __init__(self, port):
@@ -73,7 +71,9 @@ class UDPClient(NetworkClient):
         while not self.stop_data:
             try:
                 data,addr = self.net_socket.recvfrom(100)
-                process_function(data, addr)
+                # The flag may have been set while waiting for data
+                if not self.stop_data:
+                    process_function(data, addr)
             except socket.timeout:
                 print "No data received from server."
                 break
@@ -81,6 +81,8 @@ class UDPClient(NetworkClient):
     def close_socket(self):
         pass
 
+# Note that this class was written for the sake of completeness, it is not used
+# at the moment and has not been tested
 class TCPClient(NetworkClient):
     def __init__(self, port):
         NetworkClient.__init__(self, port)

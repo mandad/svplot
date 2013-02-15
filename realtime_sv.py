@@ -14,6 +14,7 @@ import time
 import threading
 import resoncom
 import hypackcom
+from svplot import calc_scaling_limits
 
 class SVFrame(wx.Frame):
     """Define the fram into which the graph canvas is inserted"""
@@ -60,11 +61,12 @@ class SVFrame(wx.Frame):
 
     def stop_comm(self, event):
         self.comm_manager.stop_communication()
-        
+
     def _on_close(self, event):
-        if self.comm_manager.comm_active:
-            self.comm_manager.stop_communication()
-        self.Destroy
+        with threading.Lock():
+            if self.comm_manager.comm_active:
+                self.comm_manager.stop_communication()
+            self.Destroy()
 
 class PlotPanel(wx.Panel):
     """The PlotPanel has a Figure and a Canvas. OnSize events simply set a 
@@ -134,6 +136,14 @@ class UpdatePlotPanel(PlotPanel):
         PlotPanel.__init__(self, parent, **kwargs)
         self.SetColor((255,255,255))
         self.plot_data = None
+        
+        self.recalc_count = 0
+        # ssp_val = np.arange(1400,1550)
+        # ssp_count = np.zeros_like(ssp_val)
+        # # Yes, I could just subtract 1400 and use it as an index...
+        # self.sv_hist = dict(zip(ssp_val, ssp_count))
+        self.ssp_hist = np.zeros(151)
+        self.ssp_vals = []
         print 'Using Update Data Method'
 
     def initial_draw(self):
@@ -143,16 +153,52 @@ class UpdatePlotPanel(PlotPanel):
 
         #self.plot_data = self.axes.scatter([],[], c='r')
 
-    def update_plot(self, new_data_x, new_data_y, ssp = 1500):
+    def update_plot(self, new_data_x, new_data_y, ssp = None):
+        if ssp is None:
+            # ssp = np.random.standard_normal() * 30 + 1480
+            ssp = 1400 + len(self.ssp_vals) * 0.25
+        if ssp >= 1400 and ssp < 1550:
+            self.ssp_hist[np.around(ssp) - 1400] += 1
+            self.ssp_vals = np.append(self.ssp_vals, ssp)
+        elif ssp < 1400:
+            self.ssp_vals = np.append(self.ssp_vals, 1400)
+        else:
+            self.ssp_vals = np.append(self.ssp_vals, 1550)
+
+        self.recalc_count += 1
         if self.plot_data is None:
             self.plot_data = self.axes.scatter([new_data_x],[new_data_y], c='r')
         else:
             pts = self.plot_data.get_offsets()
+            max_pts = pts.max(axis=0)
+            min_pts = pts.min(axis=0)
 
-            num_pts = len(pts) + 1
+            # num_pts = len(pts) + 1
             self.plot_data.set_offsets(np.append(self.plot_data.get_offsets(), (new_data_x, new_data_y)))
-            self.axes.set_xlim(new_data_x - 5, new_data_x + 5)
-            self.axes.set_ylim(new_data_y - 5, new_data_y + 5) 
+            self.axes.set_xlim(min_pts[0] - 5, max_pts[0] + 5)
+            self.axes.set_ylim(min_pts[1] - 5, max_pts[1] + 5)
+
+            if self.recalc_count > 0:
+                ssp_hist_masked = np.ma.masked_less(self.ssp_hist, self.ssp_hist.sum() * 0.001, False)
+                ssp_limits = np.ma.flatnotmasked_edges(ssp_hist_masked)
+                ssp_min = 1400 + ssp_limits[0]
+                ssp_max = 1400 + ssp_limits[1]
+
+                if ssp_min == ssp_max:
+                    ssp_max = ssp_min + 0.01
+
+                scaled_val = (self.ssp_vals - ssp_min) / (ssp_max - ssp_min)
+                scaled_val = scaled_val.clip(min = 0, max = 1)
+                scaled_val *= 0.9  #Prevents it from wrapping around to red again
+                colors = np.ones((len(scaled_val),1,3))
+                colors[:,0,0] = scaled_val
+                colors = matplotlib.colors.hsv_to_rgb(colors)
+                # print colors, scaled_val
+                self.recalc_count = 0
+                self.plot_data.set_color(colors[:,0,:])
+
+
+            
 
         # colors = plot.get_facecolor()
         # if colors.shape[0] == 1:
@@ -167,8 +213,9 @@ class UpdatePlotPanel(PlotPanel):
 
         # plot.set_color(colors)
 
-        # self.canvas.draw()
-        self._redrawflag = True
+        # either way works, one uses more CPU but one redraws faster...
+        self.canvas.draw()
+        # self._redrawflag = True
 
 class CommunicationManager():
     def __init__(self, frame, sonar_address = '192.168.0.101', hypack_port = 9888):
@@ -207,7 +254,7 @@ class CommunicationManager():
             self.last_ssp = data[1].header[6]
             print "Packet: %s, SV: %s" % (data[1].header[1], data[1].header[6])
 
-        with treading.Lock():
+        with threading.Lock():
             if self.has_pos:
                 self.has_pos = False
                 self.plot_panel.update_plot(float(self.last_pos[0]), float(self.last_pos[1]))

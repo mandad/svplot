@@ -50,7 +50,7 @@ class ResonComm:
     def get_data_loop(self):
         self.datacount = 0;
         try:
-            while self.datacount < 40:
+            while True:  #self.datacount < 40:
                 if self.reson.newdata:
                     # pull data from the data stream buffer
                     data = self.reson.dataout
@@ -62,7 +62,7 @@ class ResonComm:
                         else:
                             self.comm_manager.new_data(['reson', subpacket7006])
                         # print "Packet: %s, SV: %s" % (subpacket7006.header[1], subpacket7006.header[6])
-                        self.datacount += 1
+                        # self.datacount += 1
         except KeyboardInterrupt:
             pass
 
