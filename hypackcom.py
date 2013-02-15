@@ -77,9 +77,10 @@ class UDPClient(NetworkClient):
             except socket.timeout:
                 print "No data received from server."
                 break
+        self.close_socket()
 
     def close_socket(self):
-        pass
+        self.net_socket.close()
 
 # Note that this class was written for the sake of completeness, it is not used
 # at the moment and has not been tested

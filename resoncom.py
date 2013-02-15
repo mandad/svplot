@@ -26,6 +26,7 @@ class ResonComm:
         self.reson.command7P('recordrequest',(self.TCPport, 1, 2, 7000, 7006))
         
         self.reson.newdata = False
+        self.run_collection = True
 
         # data_thread = threading.Thread(target = self.get_data_loop, args=(self.reson, comm_manager)).start()
         data_thread = threading.Thread(target = self.get_data_loop).start()
@@ -50,7 +51,7 @@ class ResonComm:
     def get_data_loop(self):
         self.datacount = 0;
         try:
-            while True:  #self.datacount < 40:
+            while self.run_collection:  #self.datacount < 40:
                 if self.reson.newdata:
                     # pull data from the data stream buffer
                     data = self.reson.dataout
@@ -69,9 +70,11 @@ class ResonComm:
     def stop7kcenter(self):
         """Stop the TCP data flow from the 7kcenter."""
         self.reson.stopTCP = True
+        self.run_collection = False
         print "Stand by while properly closing connction to 7kcenter. """
         time.sleep(2)
         self.reson.command7P('stoprequest',(self.TCPport, 1))
+        time.sleep(1)
 
 def main():
     """Just run the program when used from the command line.  Optional seccond

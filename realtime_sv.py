@@ -3,6 +3,7 @@ Damian Manda <damian.manda@noaa.gov>
 06 Feb 2013
 Some WxWindows code based on John Bender, CWRU, 10 Sep 08
 """
+from __future__ import with_statement
 
 import matplotlib
 matplotlib.interactive(True)
@@ -11,10 +12,13 @@ matplotlib.use('WXAgg')
 import numpy as np
 import wx
 import time
+import sys
 import threading
 import resoncom
 import hypackcom
-from svplot import calc_scaling_limits
+
+debug_mode = False
+draw_lock = threading.Lock()
 
 class SVFrame(wx.Frame):
     """Define the fram into which the graph canvas is inserted"""
@@ -63,7 +67,7 @@ class SVFrame(wx.Frame):
         self.comm_manager.stop_communication()
 
     def _on_close(self, event):
-        with threading.Lock():
+        with draw_lock:
             if self.comm_manager.comm_active:
                 self.comm_manager.stop_communication()
             self.Destroy()
@@ -111,14 +115,16 @@ class PlotPanel(wx.Panel):
         self._resizeflag = True
 
     def _onIdle(self, evt):
-        if self._resizeflag:
-            self._resizeflag = False
-            self._SetSize()
-        if self._redrawflag:
-            self._redrawflag = False
-            self.canvas.draw()
+        with draw_lock:
+            if self._resizeflag:
+                self._resizeflag = False
+                self._SetSize()
+            if self._redrawflag:
+                self._redrawflag = False
+                self.canvas.draw()
 
     def _SetSize(self):
+        # When drawing from another thread, I think this may need a lock
         pixels = tuple(self.parent.GetClientSize())
         self.SetSize(pixels)
         self.canvas.SetSize(pixels)
@@ -174,9 +180,10 @@ class UpdatePlotPanel(PlotPanel):
             min_pts = pts.min(axis=0)
 
             # num_pts = len(pts) + 1
-            self.plot_data.set_offsets(np.append(self.plot_data.get_offsets(), (new_data_x, new_data_y)))
-            self.axes.set_xlim(min_pts[0] - 5, max_pts[0] + 5)
-            self.axes.set_ylim(min_pts[1] - 5, max_pts[1] + 5)
+            # np.append(self.plot_data.get_offsets(), [new_data_x, new_data_y]))
+            self.plot_data.set_offsets(np.vstack((self.plot_data.get_offsets(), [new_data_x, new_data_y])))
+            self.axes.set_xlim(min_pts[0] - 1, max_pts[0] + 1)
+            self.axes.set_ylim(min_pts[1] - 1, max_pts[1] + 1)
 
             if self.recalc_count > 0:
                 ssp_hist_masked = np.ma.masked_less(self.ssp_hist, self.ssp_hist.sum() * 0.001, False)
@@ -233,10 +240,18 @@ class CommunicationManager():
         self.hc = hypackcom.HypackCom('UDP', self.hypack_port, self)
         self.hc.run()
 
-        # self.rc = resoncom.ResonComm(self.sonar_address, comm_manager=self)
-        # self.rc.runsonar()
+        if not debug_mode:
+            self.rc = resoncom.ResonComm(self.sonar_address, comm_manager=self)
+            self.rc.runsonar()
 
         self.comm_active = True
+
+    def stop_communication(self):
+        print "Stopping Communication"
+        if not debug_mode:
+            self.rc.stop7kcenter()
+        self.hc.stop()
+        self.comm_active = False
 
     def new_data(self, data):
         """Callback for data when received by a communications source
@@ -251,23 +266,24 @@ class CommunicationManager():
                 print self.last_pos
         elif data[0] == 'reson':
             self.has_ssp = True
-            self.last_ssp = data[1].header[6]
-            print "Packet: %s, SV: %s" % (data[1].header[1], data[1].header[6])
+            self.last_ssp = float(data[1].header[6])
+            print "Packet: %s, SV: %0.2f" % (data[1].header[1], data[1].header[6])
 
-        with threading.Lock():
-            if self.has_pos:
-                self.has_pos = False
-                self.plot_panel.update_plot(float(self.last_pos[0]), float(self.last_pos[1]))
-
-    def stop_communication(self):
-        print "Stopping Communication"
-        # self.rc.stop7kcenter()
-        self.hc.stop()
-        self.comm_active = False
-
-
+        with draw_lock:
+            if debug_mode:
+                if self.has_pos:
+                    self.has_pos = False
+                    self.plot_panel.update_plot(self.last_pos[0], self.last_pos[1])
+            else:
+                if self.has_pos and self.has_ssp:
+                    self.has_pos = False
+                    self.has_ssp = False
+                    self.plot_panel.update_plot(self.last_pos[0], self.last_pos[1], self.last_ssp)
 
 if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        if sys.argv[1] == '-d':
+            debug_mode = True
     app = wx.App(0)
     app.frame = SVFrame()
     app.frame.Show()

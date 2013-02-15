@@ -20,7 +20,7 @@ while True:
         pos[0] = pos[0] + np.random.standard_normal() * 0.8
         # pos[1] = pos[1] + random.random()
         pos[1] = pos[1] + (np.random.standard_normal() + 1) * 0.8
-        time.sleep(0.01)
+        time.sleep(0.1)
     except KeyboardInterrupt:
         break
 
