@@ -80,6 +80,7 @@ def plot_sv(xcoords, ycoords, sv_values, save_name, display_limits, utm_zone, sh
     sc = ax.scatter(xcoords, ycoords, s=point_scale, c=sv_values, cmap='gist_rainbow', norm=normalize, edgecolors='none')
 
     # Save / Show map image
+    # TODO: Make this dpi adaptive to the size of the plotted physical area
     fig.savefig(save_name, dpi=1000, bbox_inches='tight', pad_inches=0)
 
     # Save colorbar - specify whether alone or with map
@@ -110,7 +111,7 @@ def plot_sv(xcoords, ycoords, sv_values, save_name, display_limits, utm_zone, sh
     tiff_convert.ConvertToGTiff(save_name, xlim_data, ylim_data, utm_zone) 
 
 def main():
-    if len(sys.argv) < 2:
+    if len(sys.argv) < 3:
         print ('Improper syntax - use:\n'
                'svplot.py txtfile zone [stdevs | sv_min sv_max]\n'
                '\n'

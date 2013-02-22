@@ -23,7 +23,7 @@ class ResonComm:
         self.reson = sevenpy.com7P(self.reson_address, 7125, '192.168.0.200')
         self.reson.stopUDP = False
         threading.Thread(target = self.reson.catchTCP, args = (self.TCPport,)).start()
-        self.reson.command7P('recordrequest',(self.TCPport, 1, 2, 7000, 7006))
+        self.reson.command7P('recordrequest',(self.TCPport, 1, 1, 7006))
         
         self.reson.newdata = False
         self.run_collection = True

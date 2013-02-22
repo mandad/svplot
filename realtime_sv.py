@@ -33,12 +33,18 @@ class SVFrame(wx.Frame):
         self.run_start = wx.MenuItem( self.run_menu, wx.ID_ANY, u"Start", wx.EmptyString, wx.ITEM_NORMAL )
         self.run_menu.AppendItem(self.run_start)
         self.Bind(wx.EVT_MENU, self.start_comm, id = self.run_start.GetId())
-        
         self.run_stop = wx.MenuItem(self.run_menu, wx.ID_ANY, u"Stop", wx.EmptyString, wx.ITEM_NORMAL)
         self.run_menu.AppendItem(self.run_stop)
         self.Bind(wx.EVT_MENU, self.stop_comm, id = self.run_stop.GetId())
+        self.pause = wx.MenuItem(self.run_menu, wx.ID_ANY, u"Pause", wx.EmptyString, wx.ITEM_CHECK)
+        self.run_menu.AppendItem(self.pause)
+        self.Bind(wx.EVT_MENU, self.pause_comm, id = self.pause.GetId())
+        self.save_menu = wx.Menu()
+        self.save_file = wx.MenuItem(self.save_menu, wx.ID_ANY, u"File", wx.EmptyString, wx.ITEM_NORMAL)
+        self.save_menu.AppendItem(self.save_file)
         
-        self.menu_bar.Append(self.run_menu, u"Run") 
+        self.menu_bar.Append(self.run_menu, u"Run")
+        self.menu_bar.Append(self.save_menu, u'Save')
         self.SetMenuBar(self.menu_bar)
         
         # Set up panel
@@ -58,15 +64,28 @@ class SVFrame(wx.Frame):
         # self.redraw_timer.Start(1000, True)
 
         # wx.CallAfter(self.start_comm)
+        self.is_closing = False
         self.comm_manager = CommunicationManager(self.panel, '192.168.0.101', 9888)
 
     def start_comm(self, event = None):
+        self.is_paused = False
         self.comm_manager.start_communication()
 
     def stop_comm(self, event):
         self.comm_manager.stop_communication()
 
+    def pause_comm(self, event):
+        if self.is_paused:
+            self.is_paused = False
+        else:
+            self.is_paused = True
+            # self.pause.Check()
+
+    def save_to_file(self, event):
+        pass
+
     def _on_close(self, event):
+        self.is_closing = True
         with draw_lock:
             if self.comm_manager.comm_active:
                 self.comm_manager.stop_communication()
@@ -156,10 +175,21 @@ class UpdatePlotPanel(PlotPanel):
         """Draw data."""
         if not hasattr(self, 'axes'):
             self.axes = self.figure.add_subplot(111, aspect='equal') # xlim=(0,101), ylim=(0,101))
+            self.axes.get_xaxis().set_ticks([])
+            self.axes.get_yaxis().set_ticks([])
+            # self.axes.set_axis_off()
 
-        #self.plot_data = self.axes.scatter([],[], c='r')
+            # cb_axes is actually [axes, 'orientation'='vertical']
+            cb_axes = matplotlib.colorbar.make_axes(self.axes, shrink=0.7)
+            self.cb_axes = cb_axes[0]
+
+        self.last_time = time.time()
 
     def update_plot(self, new_data_x, new_data_y, ssp = None):
+        cur_time = time.time()
+        print 'Time btwn draws: %0.2f' % (cur_time - self.last_time)
+        self.last_time = cur_time
+
         if ssp is None:
             # ssp = np.random.standard_normal() * 30 + 1480
             ssp = 1400 + len(self.ssp_vals) * 0.25
@@ -173,7 +203,8 @@ class UpdatePlotPanel(PlotPanel):
 
         self.recalc_count += 1
         if self.plot_data is None:
-            self.plot_data = self.axes.scatter([new_data_x],[new_data_y], c='r')
+            self.plot_data = self.axes.scatter([new_data_x],[new_data_y], c='r', edgecolors='none')
+            # self.figure.colorbar(ax=self.axes, format='%.1f')
         else:
             pts = self.plot_data.get_offsets()
             max_pts = pts.max(axis=0)
@@ -185,7 +216,7 @@ class UpdatePlotPanel(PlotPanel):
             self.axes.set_xlim(min_pts[0] - 1, max_pts[0] + 1)
             self.axes.set_ylim(min_pts[1] - 1, max_pts[1] + 1)
 
-            if self.recalc_count > 0:
+            if self.recalc_count > 10:
                 ssp_hist_masked = np.ma.masked_less(self.ssp_hist, self.ssp_hist.sum() * 0.001, False)
                 ssp_limits = np.ma.flatnotmasked_edges(ssp_hist_masked)
                 ssp_min = 1400 + ssp_limits[0]
@@ -194,15 +225,25 @@ class UpdatePlotPanel(PlotPanel):
                 if ssp_min == ssp_max:
                     ssp_max = ssp_min + 0.01
 
-                scaled_val = (self.ssp_vals - ssp_min) / (ssp_max - ssp_min)
-                scaled_val = scaled_val.clip(min = 0, max = 1)
-                scaled_val *= 0.9  #Prevents it from wrapping around to red again
-                colors = np.ones((len(scaled_val),1,3))
-                colors[:,0,0] = scaled_val
-                colors = matplotlib.colors.hsv_to_rgb(colors)
+                # I think my original method (2nd) is faster, but harder to understand and draw the colorbar
+                if True:
+                    normalize = matplotlib.colors.Normalize(vmin=ssp_min, vmax=ssp_max, clip=True)
+                    # scaled_val = normalize(self.ssp_vals)
+                    self.plot_data.set_array(self.ssp_vals)
+                    self.plot_data.set_cmap('jet')
+                    self.plot_data.set_norm(normalize)
+                    matplotlib.colorbar.ColorbarBase(self.cb_axes, cmap='jet', norm=normalize, orientation='vertical', format='%.1f')
+                else:
+                    scaled_val = (self.ssp_vals - ssp_min) / (ssp_max - ssp_min)
+                    scaled_val = scaled_val.clip(min = 0, max = 1)
+                    scaled_val *= 0.72  #Prevents it from wrapping around to red again
+                    colors = np.ones((len(scaled_val),1,3))
+                    colors[:,0,0] = scaled_val
+                    colors[colors.shape[0]-1] = np.zeros((1,3))
+                    colors = matplotlib.colors.hsv_to_rgb(colors)
+                    self.plot_data.set_color(colors[:,0,:])
                 # print colors, scaled_val
                 self.recalc_count = 0
-                self.plot_data.set_color(colors[:,0,:])
 
 
             
@@ -221,8 +262,9 @@ class UpdatePlotPanel(PlotPanel):
         # plot.set_color(colors)
 
         # either way works, one uses more CPU but one redraws faster...
-        self.canvas.draw()
-        # self._redrawflag = True
+        if not self.parent.is_closing:
+            self.canvas.draw()
+            # self._redrawflag = True
 
 class CommunicationManager():
     def __init__(self, frame, sonar_address = '192.168.0.101', hypack_port = 9888):
@@ -257,28 +299,29 @@ class CommunicationManager():
         """Callback for data when received by a communications source
         Format of data is [data_type, data_information]"""
         
-        if data[0] == 'hypack':
-            addr = data[1][0]
-            postext = data[1][1]
-            if addr[0] == '127.0.0.1' and len(postext) == 41:
-                self.has_pos = True
-                self.last_pos = [float(pos) for pos in postext.split(' ')[:2]]
-                print self.last_pos
-        elif data[0] == 'reson':
-            self.has_ssp = True
-            self.last_ssp = float(data[1].header[6])
-            print "Packet: %s, SV: %0.2f" % (data[1].header[1], data[1].header[6])
+        if not self.plot_panel.parent.is_paused:
+            if data[0] == 'hypack':
+                addr = data[1][0]
+                postext = data[1][1]
+                if addr[0] == '127.0.0.1' and len(postext) == 41:
+                    self.has_pos = True
+                    self.last_pos = [float(pos) for pos in postext.split(' ')[:2]]
+                    # print self.last_pos
+            elif data[0] == 'reson':
+                self.has_ssp = True
+                self.last_ssp = float(data[1].header[6])
+                # print "Packet: %s, SV: %0.2f" % (data[1].header[1], data[1].header[6])
 
-        with draw_lock:
-            if debug_mode:
-                if self.has_pos:
-                    self.has_pos = False
-                    self.plot_panel.update_plot(self.last_pos[0], self.last_pos[1])
-            else:
-                if self.has_pos and self.has_ssp:
-                    self.has_pos = False
-                    self.has_ssp = False
-                    self.plot_panel.update_plot(self.last_pos[0], self.last_pos[1], self.last_ssp)
+            with draw_lock:
+                if debug_mode:
+                    if self.has_pos:
+                        self.has_pos = False
+                        self.plot_panel.update_plot(self.last_pos[0], self.last_pos[1])
+                else:
+                    if self.has_pos and self.has_ssp:
+                        self.has_pos = False
+                        self.has_ssp = False
+                        self.plot_panel.update_plot(self.last_pos[0], self.last_pos[1], self.last_ssp)
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:

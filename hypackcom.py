@@ -34,7 +34,7 @@ class HypackCom(object):
         self.inc_stop(10)
 
     def print_pos(self, data, addr, autostop = True):
-        if addr[0] == '127.0.0.1' and len(data) == 41:
+        if addr[0] == '127.0.0.1' and len(data) > 2:
             print [float(pos) for pos in data.split(' ')[:2]]
             if autostop:
                 self.inc_stop(5)

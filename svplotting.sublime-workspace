@@ -4,6 +4,90 @@
 		"selected_items":
 		[
 			[
+				"ch",
+				"Check  (function)"
+			],
+			[
+				"is",
+				"is_paused  (variable)"
+			],
+			[
+				"check",
+				"ITEM_CHECK  (variable)"
+			],
+			[
+				"Em",
+				"EmptyString  (variable)"
+			],
+			[
+				"MenuI",
+				"MenuItem  (class)"
+			],
+			[
+				"draw",
+				"draw_lock"
+			],
+			[
+				"last",
+				"last_ssp  (variable)"
+			],
+			[
+				"up",
+				"update_plot"
+			],
+			[
+				"ssp",
+				"ssp_vals"
+			],
+			[
+				"min",
+				"min_pts"
+			],
+			[
+				"max",
+				"max_pts"
+			],
+			[
+				"st",
+				"stop_communication  (function)"
+			],
+			[
+				"redraw",
+				"_redrawflag"
+			],
+			[
+				"send",
+				"send_socket"
+			],
+			[
+				"send_s",
+				"send_string"
+			],
+			[
+				"u",
+				"update_plot"
+			],
+			[
+				"new",
+				"new_data_y"
+			],
+			[
+				"reson",
+				"reson_comm"
+			],
+			[
+				"data",
+				"data_thread"
+			],
+			[
+				"comm",
+				"comm_manager"
+			],
+			[
+				"print",
+				"print_sv"
+			],
+			[
 				"hypa",
 				"hypack_port"
 			],
@@ -14,10 +98,6 @@
 			[
 				"get",
 				"get_data_loop"
-			],
-			[
-				"new",
-				"newcolors"
 			],
 			[
 				"num",
@@ -36,10 +116,6 @@
 				"setsockopt  (function)"
 			],
 			[
-				"print",
-				"print_rec  (function)"
-			],
-			[
 				"stop",
 				"stop_data"
 			],
@@ -54,10 +130,6 @@
 			[
 				"DG",
 				"SOCK_DGRAM  (variable)"
-			],
-			[
-				"data",
-				"datacount"
 			],
 			[
 				"run",
@@ -159,7 +231,7 @@
 			"file": "svplot.py",
 			"settings":
 			{
-				"buffer_size": 4856,
+				"buffer_size": 5115,
 				"line_ending": "Unix"
 			}
 		},
@@ -167,7 +239,7 @@
 			"file": "tiff_convert.py",
 			"settings":
 			{
-				"buffer_size": 1545,
+				"buffer_size": 1623,
 				"line_ending": "Unix"
 			}
 		},
@@ -184,7 +256,7 @@
 			"file": "resoncom.py",
 			"settings":
 			{
-				"buffer_size": 2383,
+				"buffer_size": 3514,
 				"line_ending": "Windows"
 			}
 		},
@@ -192,7 +264,7 @@
 			"file": "hypackcom.py",
 			"settings":
 			{
-				"buffer_size": 3318,
+				"buffer_size": 3787,
 				"line_ending": "Windows"
 			}
 		},
@@ -200,17 +272,17 @@
 			"file": "realtime_sv.py",
 			"settings":
 			{
-				"buffer_size": 4640,
-				"line_ending": "Unix"
+				"buffer_size": 12327,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "datacollect.py",
+			"file": "testserver.py",
 			"settings":
 			{
-				"buffer_size": 184,
+				"buffer_size": 812,
 				"line_ending": "Unix",
-				"name": "import resoncom"
+				"name": "import socket"
 			}
 		},
 		{
@@ -278,7 +350,14 @@
 	},
 	"file_history":
 	[
+		"/usr/local/Library/Formula/wireshark.rb",
+		"/Users/damian/Documents/Programming/Python/svplot/svplot.py",
+		"/Users/damian/Documents/NOAA Corps/Rainier/Survey/Sound Velocity/SV Visualize/temp.txt",
+		"/Users/damian/Documents/Programming/Python/dmtest/hsvplot.py",
+		"/Users/damian/Documents/Programming/Python/dmtest/wxauidemo.py",
 		"/Users/damian/Documents/Programming/Python/dmtest/wxplotdemo.py",
+		"/Users/damian/Documents/Programming/Python/svplot/.gitignore",
+		"/Users/damian/Documents/Programming/Python/svplot/datacollect.py",
 		"/Users/damian/Documents/Programming/Python/svplot/hypackcom.py",
 		"/Users/damian/Documents/Programming/Python/dmtest/animatedscatter2.py",
 		"/Users/damian/Documents/Programming/Python/svplot/SVRanges_ex",
@@ -318,6 +397,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"draw_lock",
+			"threadin",
+			"sv",
+			"amax",
+			"tread",
+			"m_menubar1",
+			"sharepoint",
 			"plot_sv",
 			"dpi",
 			"self.data",
@@ -357,7 +443,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -365,31 +451,25 @@
 					"file": "svplot.py",
 					"settings":
 					{
-						"buffer_size": 4856,
+						"buffer_size": 5115,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1959,
-								1959
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"rulers":
-							[
-								80
-							],
 							"syntax": "Packages/Python/Python.tmLanguage",
 							"tab_size": 4,
-							"translate_tabs_to_spaces": true,
-							"word_wrap": false,
-							"wrap_width": 80
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1260.0,
+						"translation.y": 808.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -399,15 +479,15 @@
 					"file": "tiff_convert.py",
 					"settings":
 					{
-						"buffer_size": 1545,
+						"buffer_size": 1623,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1219,
-								1219
+								15,
+								15
 							]
 						],
 						"settings":
@@ -435,8 +515,8 @@
 						"selection":
 						[
 							[
-								1406,
-								1406
+								943,
+								943
 							]
 						],
 						"settings":
@@ -461,15 +541,15 @@
 					"file": "resoncom.py",
 					"settings":
 					{
-						"buffer_size": 2383,
+						"buffer_size": 3514,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1382,
-								1382
+								2899,
+								2899
 							]
 						],
 						"settings":
@@ -483,7 +563,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 259.0,
+						"translation.y": 660.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -493,25 +573,30 @@
 					"file": "hypackcom.py",
 					"settings":
 					{
-						"buffer_size": 3318,
+						"buffer_size": 3787,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2670,
-								2670
+								1124,
+								1124
 							]
 						],
 						"settings":
 						{
+							"rulers":
+							[
+								80
+							],
 							"syntax": "Packages/Python/Python.tmLanguage",
 							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": true,
+							"wrap_width": 0
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 147.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -521,15 +606,15 @@
 					"file": "realtime_sv.py",
 					"settings":
 					{
-						"buffer_size": 4640,
+						"buffer_size": 12327,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4225,
-								4225
+								7851,
+								7851
 							]
 						],
 						"settings":
@@ -539,31 +624,33 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1470.0,
+						"translation.y": 3453.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 6,
-					"file": "datacollect.py",
+					"file": "testserver.py",
 					"settings":
 					{
-						"buffer_size": 184,
+						"buffer_size": 812,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								47,
-								145
+								721,
+								721
 							]
 						],
 						"settings":
 						{
-							"auto_name": "import resoncom",
-							"syntax": "Packages/Python/Python.tmLanguage"
+							"auto_name": "import socket",
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -583,8 +670,8 @@
 						"selection":
 						[
 							[
-								143,
-								143
+								141,
+								141
 							]
 						],
 						"settings":
