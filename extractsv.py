@@ -58,6 +58,7 @@ def main():
         SystemExit(1)
 
     look_in = sys.argv[1]
+    print len(sys.argv), sys.argv
     if look_in.endswith('HSX'):
         process_single(look_in)
     elif look_in == '-d' and len(sys.argv) == 4:

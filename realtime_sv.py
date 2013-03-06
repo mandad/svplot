@@ -21,7 +21,7 @@ debug_mode = False
 draw_lock = threading.Lock()
 
 class SVFrame(wx.Frame):
-    """Define the fram into which the graph canvas is inserted"""
+    """Define the frame into which the graph canvas is inserted"""
     title = 'Surface Sound Speed Map'
     
     def __init__(self):
@@ -42,9 +42,13 @@ class SVFrame(wx.Frame):
         self.save_menu = wx.Menu()
         self.save_file = wx.MenuItem(self.save_menu, wx.ID_ANY, u"File", wx.EmptyString, wx.ITEM_NORMAL)
         self.save_menu.AppendItem(self.save_file)
+        settings_menu = wx.Menu()
+        manual_option = settings_menu.Append(wx.ID_ANY, u"Manual Scaling")
+        self.Bind(wx.EVT_MENU, self.manual_scale)
         
         self.menu_bar.Append(self.run_menu, u"Run")
         self.menu_bar.Append(self.save_menu, u'Save')
+        self.menu_bar.Append(settings_menu, u"Settings")
         self.SetMenuBar(self.menu_bar)
         
         # Set up panel
@@ -186,6 +190,7 @@ class UpdatePlotPanel(PlotPanel):
         self.last_time = time.time()
 
     def update_plot(self, new_data_x, new_data_y, ssp = None):
+        """Process the data and add it to the plot.  Performs color scaling """
         cur_time = time.time()
         print 'Time btwn draws: %0.2f' % (cur_time - self.last_time)
         self.last_time = cur_time
