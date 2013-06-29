@@ -247,7 +247,7 @@
 			"file": "extractsv.py",
 			"settings":
 			{
-				"buffer_size": 2644,
+				"buffer_size": 2829,
 				"line_ending": "Unix",
 				"name": "import sys"
 			}
@@ -272,7 +272,7 @@
 			"file": "realtime_sv.py",
 			"settings":
 			{
-				"buffer_size": 12327,
+				"buffer_size": 12583,
 				"line_ending": "Windows"
 			}
 		},
@@ -297,9 +297,13 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 267.0,
+		"height": 67.0,
 		"selected_items":
 		[
+			[
+				"Snippet: ",
+				"Snippet: Lorem ipsum"
+			],
 			[
 				":w",
 				":w - Save"
@@ -327,10 +331,6 @@
 			[
 				":e",
 				":$ - EOF"
-			],
-			[
-				"Snippet: ",
-				"Snippet: New Class"
 			]
 		],
 		"width": 602.0
@@ -458,8 +458,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								192,
+								190
 							]
 						],
 						"settings":
@@ -469,7 +469,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 808.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -486,8 +486,8 @@
 						"selection":
 						[
 							[
-								15,
-								15
+								12,
+								12
 							]
 						],
 						"settings":
@@ -508,15 +508,15 @@
 					"file": "extractsv.py",
 					"settings":
 					{
-						"buffer_size": 2644,
+						"buffer_size": 2829,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								943,
-								943
+								2279,
+								2279
 							]
 						],
 						"settings":
@@ -531,7 +531,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 390.0,
+						"translation.y": 480.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -548,8 +548,8 @@
 						"selection":
 						[
 							[
-								2899,
-								2899
+								2896,
+								2896
 							]
 						],
 						"settings":
@@ -563,7 +563,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 660.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -580,8 +580,8 @@
 						"selection":
 						[
 							[
-								1124,
-								1124
+								1121,
+								1121
 							]
 						],
 						"settings":
@@ -596,7 +596,7 @@
 							"wrap_width": 0
 						},
 						"translation.x": 0.0,
-						"translation.y": 147.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -606,15 +606,15 @@
 					"file": "realtime_sv.py",
 					"settings":
 					{
-						"buffer_size": 12327,
+						"buffer_size": 12583,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7851,
-								7851
+								12349,
+								12349
 							]
 						],
 						"settings":
@@ -624,7 +624,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3453.0,
+						"translation.y": 368.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -641,8 +641,8 @@
 						"selection":
 						[
 							[
-								721,
-								721
+								718,
+								718
 							]
 						],
 						"settings":
@@ -670,8 +670,8 @@
 						"selection":
 						[
 							[
-								141,
-								141
+								138,
+								138
 							]
 						],
 						"settings":

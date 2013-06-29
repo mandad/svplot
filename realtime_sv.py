@@ -173,7 +173,6 @@ class UpdatePlotPanel(PlotPanel):
         # self.sv_hist = dict(zip(ssp_val, ssp_count))
         self.ssp_hist = np.zeros(151)
         self.ssp_vals = []
-        print 'Using Update Data Method'
 
     def initial_draw(self):
         """Draw data."""

@@ -63,8 +63,13 @@ def main():
         process_single(look_in)
     elif look_in == '-d' and len(sys.argv) == 4:
         if os.path.isdir(sys.argv[2]):
+            if sys.argv[2][-1] == os.path.sep
+                dirname = sys.argv[2]
+            else:
+                dirname = sys.argv[2] + os.path.sep
+
             file_data = []
-            for cur_file in glob.glob(sys.argv[2]+"*.HSX"):
+            for cur_file in glob.glob(dirname+"*.HSX"):
                 file_data.extend(list(parse_file(cur_file)))
             write_data(sys.argv[3], file_data)
         else:
