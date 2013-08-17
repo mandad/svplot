@@ -16,14 +16,15 @@ def parse_file(read_file, start_index=0):
         if len(line) > 3:
             string_type = line[:3]
             if string_type == 'POS':
+                split_line = line.split(' ')
                 if not have_ssp:
                     if is_start:
-                        cur_data_line[1] = line.split(' ')[3]
-                        cur_data_line[2] = line.split(' ')[4][:-2]  #remove \r\n
+                        cur_data_line[1] = split_line[3]
+                        cur_data_line[2] = split_line[4][:-2]  #remove \r\n
                         is_start = False
                 else:
-                    cur_data_line[3] = line.split(' ')[3]
-                    cur_data_line[4] = line.split(' ')[4][:-2]  #remove \r\n
+                    cur_data_line[3] = split_line[3]
+                    cur_data_line[4] = split_line[4][:-2]  #remove \r\n
                     all_data.append(cur_data_line[:])
                     cur_data_line[0] += 1
                     have_ssp = False
@@ -31,10 +32,12 @@ def parse_file(read_file, start_index=0):
                     # Store last to previous position, to aviod breaks in lines
                     cur_data_line[1] = cur_data_line[3]
                     cur_data_line[2] = cur_data_line[4]
-            elif string_type == 'RMB':
-                cur_data_line[5] = float(line.split(' ')[7])
-                if not is_start:
-                    have_ssp = True
+            elif string_type == 'RMB' and line[4] != '0':
+                ssp_val = float(line.split(' ')[7])
+                if ssp_val > 0:
+                    cur_data_line[5] = ssp_val
+                    if not is_start:
+                        have_ssp = True
     #end for
     return all_data
 
@@ -63,7 +66,7 @@ def main():
         process_single(look_in)
     elif look_in == '-d' and len(sys.argv) == 4:
         if os.path.isdir(sys.argv[2]):
-            if sys.argv[2][-1] == os.path.sep
+            if sys.argv[2][-1] == os.path.sep:
                 dirname = sys.argv[2]
             else:
                 dirname = sys.argv[2] + os.path.sep

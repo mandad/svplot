@@ -247,7 +247,7 @@
 			"file": "extractsv.py",
 			"settings":
 			{
-				"buffer_size": 2829,
+				"buffer_size": 2830,
 				"line_ending": "Unix",
 				"name": "import sys"
 			}
@@ -443,7 +443,7 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -458,8 +458,8 @@
 						"selection":
 						[
 							[
-								192,
-								190
+								2987,
+								3004
 							]
 						],
 						"settings":
@@ -469,7 +469,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 760.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -486,8 +486,8 @@
 						"selection":
 						[
 							[
-								12,
-								12
+								10,
+								10
 							]
 						],
 						"settings":
@@ -508,15 +508,15 @@
 					"file": "extractsv.py",
 					"settings":
 					{
-						"buffer_size": 2829,
+						"buffer_size": 2830,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2279,
-								2279
+								2278,
+								2278
 							]
 						],
 						"settings":
@@ -548,8 +548,8 @@
 						"selection":
 						[
 							[
-								2896,
-								2896
+								2889,
+								2889
 							]
 						],
 						"settings":
@@ -580,8 +580,8 @@
 						"selection":
 						[
 							[
-								1121,
-								1121
+								1114,
+								1114
 							]
 						],
 						"settings":
@@ -613,8 +613,8 @@
 						"selection":
 						[
 							[
-								12349,
-								12349
+								12532,
+								12532
 							]
 						],
 						"settings":
@@ -624,7 +624,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 368.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -641,8 +641,8 @@
 						"selection":
 						[
 							[
-								718,
-								718
+								711,
+								711
 							]
 						],
 						"settings":
@@ -670,8 +670,8 @@
 						"selection":
 						[
 							[
-								138,
-								138
+								131,
+								131
 							]
 						],
 						"settings":
