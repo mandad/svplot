@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"cu",
+				"cur_data_line"
+			],
+			[
 				"ch",
 				"Check  (function)"
 			],
@@ -247,7 +251,7 @@
 			"file": "extractsv.py",
 			"settings":
 			{
-				"buffer_size": 2830,
+				"buffer_size": 2952,
 				"line_ending": "Unix",
 				"name": "import sys"
 			}
@@ -397,6 +401,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"line.split(' ')",
 			"draw_lock",
 			"threadin",
 			"sv",
@@ -433,6 +438,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"split_line"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -508,15 +514,15 @@
 					"file": "extractsv.py",
 					"settings":
 					{
-						"buffer_size": 2830,
+						"buffer_size": 2952,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2278,
-								2278
+								248,
+								248
 							]
 						],
 						"settings":
@@ -531,7 +537,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 480.0,
+						"translation.y": 3.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -548,8 +554,8 @@
 						"selection":
 						[
 							[
-								2889,
-								2889
+								2888,
+								2888
 							]
 						],
 						"settings":
@@ -580,8 +586,8 @@
 						"selection":
 						[
 							[
-								1114,
-								1114
+								1113,
+								1113
 							]
 						],
 						"settings":
@@ -613,8 +619,8 @@
 						"selection":
 						[
 							[
-								12532,
-								12532
+								12531,
+								12531
 							]
 						],
 						"settings":
@@ -641,8 +647,8 @@
 						"selection":
 						[
 							[
-								711,
-								711
+								710,
+								710
 							]
 						],
 						"settings":
@@ -670,8 +676,8 @@
 						"selection":
 						[
 							[
-								131,
-								131
+								130,
+								130
 							]
 						],
 						"settings":
@@ -724,7 +730,7 @@
 	},
 	"replace":
 	{
-		"height": 0.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
