@@ -1,7 +1,8 @@
 import os
 if os.name != 'posix':
     here = os.getcwd()
-    hstp = r'C:\Program Files (x86)\Pydro\Lib\site-packages\HSTP\Pydro'
+    # hstp = r'C:\Program Files (x86)\Pydro\Lib\site-packages\HSTP\Pydro'
+    hstp = r'C:\Program Files\Pydro64\Lib\site-packages\HSTP\Pydro'
     os.chdir(hstp)
 import gdal
 from gdalconst import *

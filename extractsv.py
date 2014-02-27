@@ -12,6 +12,8 @@ def parse_file(read_file, start_index=0):
     cur_data_line = [None] * 6  #Indexes 0=ID, 1=X1, 2=Y1, 3=X2, 4=Y2, 5=SSP
     cur_data_line[0] = start_index
 
+    print 'Processing File: ' + read_file
+
     for line in open(read_file):
         if len(line) > 3:
             string_type = line[:3]

@@ -81,7 +81,7 @@ def plot_sv(xcoords, ycoords, sv_values, save_name, display_limits, utm_zone, sh
 
     # Save / Show map image
     # TODO: Make this dpi adaptive to the size of the plotted physical area
-    fig.savefig(save_name, dpi=1000, bbox_inches='tight', pad_inches=0)
+    fig.savefig(save_name, dpi=1000, bbox_inches='tight', pad_inches=0, transparent=True)
 
     # Save colorbar - specify whether alone or with map
     colorbar_map = False
@@ -98,22 +98,27 @@ def plot_sv(xcoords, ycoords, sv_values, save_name, display_limits, utm_zone, sh
         cb1.set_label('Sound Velocity (m/s)')
 
 
-    fig.savefig(save_name[:-4] + '_legend.png', dpi=300, bbox_inches='tight', pad_inches=0.2)
+    fig.savefig(save_name[:-4] + '_legend.png', dpi=300, bbox_inches='tight', pad_inches=0.2, transparent=True)
     plt.close()
 
     if show_hist:
         # Create a histogram
-        plt.hist(sv_values, bins=30, range=(display_limits[0] - 1, display_limits[1] + 1)) #log=True for log scale
-        plt.show()
-        plt.close()
+        plot_histogram(sv_values, display_limits)
+
 
     # GDAL stuff
     tiff_convert.ConvertToGTiff(save_name, xlim_data, ylim_data, utm_zone) 
+
+def plot_histogram(sv_values, display_limits):
+    plt.hist(sv_values, bins=30, range=(display_limits[0] - 1, display_limits[1] + 1)) #log=True for log scale
+    plt.show()
+    # plt.close()
 
 def main():
     if len(sys.argv) < 3:
         print ('Improper syntax - use:\n'
                'svplot.py txtfile zone [stdevs | sv_min sv_max]\n'
+               'svplot.py -h txtfile\n'
                '\n'
                'zone: UTM zone for the map\n' 
                'stdevs: Standard deviations around the mean for color scaling\n'
@@ -121,6 +126,14 @@ def main():
                '\n'
                'If both are omitted, histogram scaling will be used.')
         raise SystemExit(1)
+
+    if sys.argv[1] == '-h':
+        xcoords, ycoords, sv_values = read_from_txt(sys.argv[2])
+        data_limits = calc_scaling_limits(sv_values, 'minmax')
+        plot_histogram(sv_values, data_limits)
+        print 'SV Range: ', data_limits[0], ' - ', data_limits[1]
+        return
+
 
     xcoords, ycoords, sv_values = read_from_txt(sys.argv[1])
     save_name = sys.argv[1][:-3] + 'png'
